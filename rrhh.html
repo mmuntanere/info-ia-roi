@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recruiting Inteligente - Seroca</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #F8FAFC;
+            /* Azul muy pálido, corporativo */
+            color: #1E3A8A;
+            /* Azul oscuro */
+        }
+
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin: 0 auto;
+            height: 350px;
+        }
+
+        .gradient-text {
+            background: linear-gradient(to right, #2563EB, #06B6D4);
+            /* Azul a Cyan */
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .card-service {
+            transition: all 0.3s ease;
+            border-bottom: 4px solid transparent;
+        }
+
+        .card-service:hover {
+            transform: translateY(-5px);
+            border-bottom-color: #2563EB;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Mockup Phone CSS */
+        .phone-mockup {
+            border: 8px solid #374151;
+            border-radius: 20px;
+            overflow: hidden;
+            position: relative;
+            background: white;
+            max-width: 280px;
+            margin: 0 auto;
+        }
+
+        .phone-notch {
+            background: #374151;
+            width: 40%;
+            height: 15px;
+            position: absolute;
+            top: 0;
+            left: 30%;
+            border-bottom-left-radius: 8px;
+            border-bottom-right-radius: 8px;
+            z-index: 20;
+        }
+
+        /* Chat Bubble CSS */
+        .chat-bubble {
+            padding: 8px 12px;
+            border-radius: 12px;
+            margin-bottom: 8px;
+            font-size: 0.75rem;
+            max-width: 85%;
+        }
+
+        .chat-user {
+            background-color: #DBEAFE;
+            /* Azul suave */
+            color: #1E3A8A;
+            align-self: flex-end;
+            border-bottom-right-radius: 2px;
+            margin-left: auto;
+        }
+
+        .chat-bot {
+            background-color: #F3F4F6;
+            color: #374151;
+            align-self: flex-start;
+            border-bottom-left-radius: 2px;
+        }
+
+        /* Use Case Cards */
+        .use-case-card {
+            background: white;
+            border-radius: 1rem;
+            padding: 1.5rem;
+            border: 1px solid #E2E8F0;
+            transition: all 0.2s;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .use-case-card:hover {
+            border-color: #3B82F6;
+            box-shadow: 0 10px 30px -10px rgba(59, 130, 246, 0.2);
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+
+<body class="bg-slate-50">
+
+    <!-- Header -->
+    <header class="bg-white shadow-sm sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
+            <div class="flex items-center">
+                <!-- LOGO -->
+                <img src="seroca logo.jpeg" alt="Logo Seroca" class="h-12 mr-4 object-contain"
+                    onerror="this.style.display='none'; document.getElementById('logo-fallback').style.display='block';">
+                <h2 id="logo-fallback" style="display:none;"
+                    class="text-2xl font-extrabold text-blue-900 mr-4 tracking-tight">SEROCA</h2>
+
+                <div class="h-8 w-px bg-slate-300 mx-2"></div>
+                <h1 class="text-sm font-semibold text-slate-500 uppercase tracking-wide hidden md:block">Recruiting &
+                    RRHH</h1>
+            </div>
+            <nav class="hidden md:flex space-x-8">
+                <a href="index.html" class="text-slate-500 hover:text-blue-900 font-medium transition">Informe ROI</a>
+                <a href="servicios_campo.html"
+                    class="text-slate-500 hover:text-blue-900 font-medium transition">Trabajos campo</a>
+                <a href="rrhh.html" class="text-blue-700 font-bold border-b-2 border-blue-700">RRHH</a>
+            </nav>
+            <!-- Mobile Menu Button -->
+            <div class="md:hidden flex items-center">
+                <button id="mobile-menu-btn" class="text-slate-500 hover:text-blue-900 focus:outline-none">
+                    <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-slate-100">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="index.html"
+                    class="block px-3 py-2 rounded-md text-base font-medium text-slate-500 hover:text-blue-900 hover:bg-slate-50">Informe
+                    ROI</a>
+                <a href="servicios_campo.html"
+                    class="block px-3 py-2 rounded-md text-base font-medium text-slate-500 hover:text-blue-900 hover:bg-slate-50">Trabajos
+                    campo</a>
+                <a href="rrhh.html"
+                    class="block px-3 py-2 rounded-md text-base font-medium text-blue-700 bg-blue-50">RRHH</a>
+            </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+
+        <!-- Hero Section -->
+        <div class="text-center mb-16">
+            <span
+                class="bg-blue-100 text-blue-800 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wide">Talent
+                Acquisition • Onboarding • Gestión</span>
+            <h2 class="text-4xl md:text-6xl font-extrabold text-slate-900 mt-4 mb-6 leading-tight">
+                Menos Burocracia, <br>
+                <span class="gradient-text">Más Talento</span>
+            </h2>
+            <p class="text-xl text-slate-600 max-w-3xl mx-auto">
+                Deje que la IA filtre los CVs y coordine las entrevistas. Su equipo de RRHH debe centrarse en las
+                personas, no en las hojas de cálculo.
+            </p>
+        </div>
+
+        <!-- Problem vs Solution -->
+        <section class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-24">
+            <!-- Problem -->
+            <div class="bg-slate-100 p-8 rounded-2xl border border-slate-200 relative overflow-hidden group">
+                <div
+                    class="absolute top-0 right-0 p-4 opacity-10 text-9xl transform rotate-12 group-hover:rotate-0 transition duration-500">
+                    📄</div>
+                <h3 class="text-2xl font-bold text-slate-700 mb-4">El Problema: Saturación</h3>
+                <ul class="space-y-4">
+                    <li class="flex items-start"><span class="text-red-500 mr-3 text-xl">✖</span>
+                        <p class="text-slate-600 text-sm"><strong>Cientos de CVs:</strong> Imposible leerlos todos a
+                            fondo. Se pierde talento.</p>
+                    </li>
+                    <li class="flex items-start"><span class="text-red-500 mr-3 text-xl">✖</span>
+                        <p class="text-slate-600 text-sm"><strong>Agenda Caótica:</strong> 20 emails para fijar una sola
+                            entrevista.</p>
+                    </li>
+                    <li class="flex items-start"><span class="text-red-500 mr-3 text-xl">✖</span>
+                        <p class="text-slate-600 text-sm"><strong>Ghosting:</strong> Los candidatos se van porque nadie
+                            les contesta.</p>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Solution -->
+            <div class="bg-blue-50 p-8 rounded-2xl border border-blue-100 relative overflow-hidden group">
+                <div
+                    class="absolute top-0 right-0 p-4 opacity-10 text-9xl transform -rotate-12 group-hover:rotate-0 transition duration-500">
+                    🚀</div>
+                <h3 class="text-2xl font-bold text-blue-800 mb-4">La Solución: Seroca</h3>
+                <ul class="space-y-4">
+                    <li class="flex items-start"><span class="text-blue-600 mr-3 text-xl">✔</span>
+                        <p class="text-slate-700 text-sm"><strong>Filtrado Automático:</strong> La IA lee, puntúa y
+                            clasifica CVs 24/7.</p>
+                    </li>
+                    <li class="flex items-start"><span class="text-blue-600 mr-3 text-xl">✔</span>
+                        <p class="text-slate-700 text-sm"><strong>Entrevistas Solas:</strong> El candidato elige hueco
+                            en el calendario.</p>
+                    </li>
+                    <li class="flex items-start"><span class="text-blue-600 mr-3 text-xl">✔</span>
+                        <p class="text-slate-700 text-sm"><strong>Feedback Constante:</strong> Emails automáticos en
+                            cada fase.</p>
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Service 1: Automated Screening Pipeline -->
+        <section class="mb-24">
+            <div class="bg-white rounded-3xl shadow-lg border border-slate-200 overflow-hidden">
+                <div class="grid grid-cols-1 lg:grid-cols-2">
+                    <div class="p-8 md:p-12 flex flex-col justify-center">
+                        <div
+                            class="inline-block bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-xs font-bold mb-4 w-fit">
+                            AHORRA 20h/SEMANA</div>
+                        <h3 class="text-3xl font-bold text-slate-900 mb-4">El Candidato Perfecto, servido en bandeja
+                        </h3>
+                        <p class="text-slate-600 mb-6">
+                            Ya no hace falta abrir 500 PDFs. Nuestro sistema procesa las candidaturas desde LinkedIn o
+                            InfoJobs, descarta las que no cumplen requisitos y agenda entrevista con los TOP 5.
+                        </p>
+                        <ul class="space-y-2 mb-8">
+                            <li class="flex items-center text-sm font-medium text-slate-700"><span
+                                    class="w-2 h-2 bg-blue-500 rounded-full mr-2"></span> Parsing de CVs con IA</li>
+                            <li class="flex items-center text-sm font-medium text-slate-700"><span
+                                    class="w-2 h-2 bg-blue-500 rounded-full mr-2"></span> Scoring de Skills automático
+                            </li>
+                            <li class="flex items-center text-sm font-medium text-slate-700"><span
+                                    class="w-2 h-2 bg-blue-500 rounded-full mr-2"></span> Tests técnicos automatizados
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="bg-slate-50 p-8 flex items-center justify-center relative">
+                        <!-- Connecting Line -->
+                        <div class="absolute top-1/2 left-10 right-10 h-1 bg-slate-200 -z-0 hidden md:block"></div>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 w-full z-10">
+                            <!-- Step 1 -->
+                            <div
+                                class="bg-white p-4 rounded-xl shadow-md text-center transform hover:scale-105 transition">
+                                <div class="text-4xl mb-2">📥</div>
+                                <div class="font-bold text-slate-800 text-sm">1. Entrada</div>
+                                <div class="text-xs text-slate-500">Candidato aplica</div>
+                            </div>
+                            <!-- Step 2 -->
+                            <div
+                                class="bg-blue-600 p-4 rounded-xl shadow-md text-center text-white transform hover:scale-110 transition">
+                                <div class="text-4xl mb-2">🧠</div>
+                                <div class="font-bold text-sm">2. Filtrado IA</div>
+                                <div class="text-xs text-blue-100">Lectura y Scoring</div>
+                            </div>
+                            <!-- Step 3 -->
+                            <div
+                                class="bg-white p-4 rounded-xl shadow-md text-center transform hover:scale-105 transition">
+                                <div class="text-4xl mb-2">📅</div>
+                                <div class="font-bold text-slate-800 text-sm">3. Entrevista</div>
+                                <div class="text-xs text-slate-500">Agendada en tu cal</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Service 2 & 3: Chatbot & CV Scoring -->
+        <section class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-24">
+
+            <!-- Chatbot Screening -->
+            <div class="bg-white p-8 rounded-3xl shadow-sm border border-slate-200">
+                <h3 class="text-2xl font-bold text-slate-900 mb-2">Entrevista Previa por WhatsApp</h3>
+                <p class="text-slate-500 text-sm mb-6">Cualifica candidatos al instante, dondequiera que estén.</p>
+                <div class="phone-mockup shadow-inner bg-gray-50 h-80 flex flex-col">
+                    <div class="phone-notch"></div>
+                    <div class="flex-1 p-4 flex flex-col overflow-y-auto pt-8">
+                        <div class="text-center text-xs text-gray-400 mb-4">Hoy 09:15</div>
+                        <div class="chat-bubble chat-user">Hola, me interesa la oferta de Comercial.</div>
+                        <div class="chat-bubble chat-bot">¡Genial! 👋 Para avanzar, necesito hacerte 2 preguntas
+                            rápidas. ¿Tienes carnet de conducir?</div>
+                        <div class="chat-bubble chat-user">Sí, y coche propio. 🚗</div>
+                        <div class="chat-bubble chat-bot">Perfecto. ¿Cuántos años de experiencia tienes en ventas B2B?
+                        </div>
+                        <div class="chat-bubble chat-user">Unos 4 años.</div>
+                        <div class="chat-bubble chat-bot">¡Encajas en el perfil! ✅ Te paso el link para agendar
+                            entrevista.</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CV Scoring Visual -->
+            <div class="bg-slate-900 p-8 rounded-3xl shadow-sm text-white relative overflow-hidden">
+                <div class="relative z-10">
+                    <h3 class="text-2xl font-bold mb-2">Scoring de Talento</h3>
+                    <p class="text-slate-400 text-sm mb-8">Sepa quién es el mejor candidato antes de abrir el email.</p>
+
+                    <!-- Visual Card: CV Analysis -->
+                    <div
+                        class="bg-white text-slate-800 rounded-xl p-4 shadow-lg mb-4 transform rotate-1 hover:rotate-0 transition duration-500">
+                        <div class="flex justify-between items-start mb-3">
+                            <div class="flex items-center">
+                                <div
+                                    class="w-10 h-10 bg-slate-200 rounded-full mr-3 flex items-center justify-center font-bold text-slate-500">
+                                    JP</div>
+                                <div>
+                                    <h4 class="font-bold text-sm">Juan Pérez</h4>
+                                    <p class="text-xs text-slate-500">Backend Developer</p>
+                                </div>
+                            </div>
+                            <div class="bg-green-100 text-green-700 font-bold px-2 py-1 rounded text-xs">
+                                Match: 94%
+                            </div>
+                        </div>
+                        <div class="space-y-2">
+                            <div class="w-full bg-slate-100 rounded-full h-2">
+                                <div class="bg-blue-600 h-2 rounded-full" style="width: 90%"></div>
+                            </div>
+                            <div class="flex justify-between text-xs text-slate-500">
+                                <span>Python</span>
+                                <span>SQL</span>
+                                <span>Docker</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-slate-800/50 p-3 rounded-lg border border-slate-700 flex items-center">
+                        <span class="text-2xl mr-3">💡</span>
+                        <p class="text-xs text-slate-300">
+                            La IA ha detectado que Juan tiene experiencia en el sector Fintech, aunque no lo pusiste en
+                            la oferta.
+                        </p>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Use Cases / Day to Day -->
+        <section class="mb-24">
+            <h3 class="text-3xl font-bold text-slate-900 mb-8 text-center">Gestión de RRHH, Simplificada</h3>
+            <p class="text-slate-600 text-center max-w-2xl mx-auto mb-12">
+                Experiencias fluidas para el candidato, paz mental para el recruiter.
+            </p>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+
+                <!-- Card 1: Agenda -->
+                <div class="use-case-card group">
+                    <div class="flex items-center mb-4">
+                        <div class="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center text-xl mr-3">📅
+                        </div>
+                        <h4 class="font-bold text-slate-800 text-lg">Agenda Automática</h4>
+                    </div>
+                    <p class="text-sm text-slate-600 mb-auto">
+                        Se acabaron los emails de "¿puedes el martes?". Enviamos tu calendario y ellos eligen.
+                    </p>
+                    <!-- Visual Snippet -->
+                    <div
+                        class="bg-slate-50 p-3 rounded-lg text-xs text-slate-500 border border-slate-200 font-mono mt-4 shadow-sm">
+                        <div class="flex items-center mb-1 text-blue-600 font-bold">
+                            NUEVA CITA CONFIRMADA
+                        </div>
+                        <div class="text-slate-700">
+                            Candidata: <strong>Ana García</strong><br>
+                            Fecha: Jueves, 11:30<br>
+                            Sala: Google Meet 📹
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 2: Comunicaciones -->
+                <div class="use-case-card group">
+                    <div class="flex items-center mb-4">
+                        <div class="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center text-xl mr-3">✉️
+                        </div>
+                        <h4 class="font-bold text-slate-800 text-lg">Anti-Ghosting</h4>
+                    </div>
+                    <p class="text-sm text-slate-600 mb-auto">
+                        Mantén informados a los candidatos automáticamente. Mejora tu Employer Branding.
+                    </p>
+                    <!-- Visual Snippet -->
+                    <div
+                        class="bg-slate-50 p-3 rounded-lg text-xs text-slate-500 border border-slate-200 font-mono mt-4 shadow-sm">
+                        <div class="flex justify-between items-center mb-1">
+                            <span>Para: candidato@...</span>
+                            <span class="bg-gray-200 px-1 rounded text-[9px]">Auto</span>
+                        </div>
+                        <p class="italic text-slate-600">"Hola Carlos, tu proceso avanza. Pasamos a fase técnica..."</p>
+                    </div>
+                </div>
+
+                <!-- Card 3: Onboarding -->
+                <div class="use-case-card group">
+                    <div class="flex items-center mb-4">
+                        <div class="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center text-xl mr-3">👋
+                        </div>
+                        <h4 class="font-bold text-slate-800 text-lg">Onboarding Digital</h4>
+                    </div>
+                    <p class="text-sm text-slate-600 mb-auto">
+                        Contratos, alta en la SS y entrega de material gestionados por el bot antes del primer día.
+                    </p>
+                    <!-- Visual Snippet -->
+                    <div
+                        class="bg-green-50 p-3 rounded-lg text-xs text-green-800 border border-green-100 font-mono mt-4 shadow-sm">
+                        <div class="flex items-center font-bold mb-1">✅ LISTO PARA EMPEZAR</div>
+                        <ul class="list-disc list-inside">
+                            <li>Contrato Firmado</li>
+                            <li>Email Creado</li>
+                            <li>Portátil Asignado</li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Stats / Results Section -->
+        <section class="mb-20">
+            <h3 class="text-2xl font-bold text-slate-900 mb-8 text-center">Resultados Reales</h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+
+                <div class="bg-white p-6 rounded-2xl shadow-sm">
+                    <h4 class="text-center font-bold mb-1 text-slate-600">Tiempo de Contratación (Días)</h4>
+                    <p class="text-center text-xs text-slate-400 mb-4">Reducción del ciclo "Time-to-Hire"</p>
+                    <div class="chart-container">
+                        <canvas id="hiringChart"></canvas>
+                    </div>
+                </div>
+
+                <div class="space-y-6">
+                    <div class="bg-blue-50 p-6 rounded-xl border-l-4 border-blue-500">
+                        <div class="text-xl font-bold text-blue-800 mb-2">⚡ 60% Más Rápido</div>
+                        <p class="text-sm text-blue-700">Cubra las vacantes en semanas, no en meses. No pierda talento
+                            frente a la competencia.</p>
+                    </div>
+                    <div class="bg-slate-100 p-6 rounded-xl border-l-4 border-slate-500">
+                        <div class="text-xl font-bold text-slate-800 mb-2">😊 Candidatos Felices</div>
+                        <p class="text-sm text-slate-700">La respuesta inmediata mejora la imagen de su empresa, incluso
+                            para los descartados.</p>
+                    </div>
+                    <div class="bg-indigo-50 p-6 rounded-xl border-l-4 border-indigo-500">
+                        <div class="text-xl font-bold text-indigo-800 mb-2">🎯 Cero Sesgos</div>
+                        <p class="text-sm text-indigo-700">La IA filtra por capacidades (skills), no por edad, género o
+                            foto, garantizando objetividad.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Minimal Footer -->
+        <footer class="text-center py-8 border-t border-slate-200 mt-12">
+            <p class="text-sm text-slate-400">© 2023 Seroca. Soluciones de automatización a medida.</p>
+        </footer>
+
+    </main>
+
+    <script>
+        // --- Mobile Menu Logic ---
+        const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
+
+        btn.addEventListener('click', () => {
+            menu.classList.toggle('hidden');
+        });
+
+        // --- Tooltip Logic ---
+        const commonTooltipOptions = {
+            callbacks: {
+                title: function (tooltipItems) { return tooltipItems[0].label; },
+                label: function (context) {
+                    let label = context.dataset.label || '';
+                    if (label) { label += ': '; }
+                    if (context.parsed.x !== null) { label += context.parsed.x + ' Días'; }
+                    return label;
+                }
+            }
+        };
+
+        // --- Chart: Time to Hire (Horizontal Bar) ---
+        const ctxHiring = document.getElementById('hiringChart').getContext('2d');
+        new Chart(ctxHiring, {
+            type: 'bar',
+            data: {
+                labels: ['Proceso Manual', 'Proceso Seroca'],
+                datasets: [
+                    {
+                        label: 'Filtrado de CVs',
+                        data: [15, 1], // Días gastados
+                        backgroundColor: '#94A3B8', // Gris (Lento)
+                    },
+                    {
+                        label: 'Entrevistas y Feedback',
+                        data: [20, 10], // Días
+                        backgroundColor: '#3B82F6', // Azul (Medio)
+                    },
+                    {
+                        label: 'Oferta y Cierre',
+                        data: [10, 4], // Días
+                        backgroundColor: '#1E40AF', // Azul Oscuro (Rápido)
+                    }
+                ]
+            },
+            options: {
+                indexAxis: 'y', // Barras horizontales
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    x: {
+                        stacked: true,
+                        title: { display: true, text: 'Días Totales del Proceso' }
+                    },
+                    y: {
+                        stacked: true
+                    }
+                },
+                plugins: {
+                    legend: { position: 'bottom' },
+                    tooltip: commonTooltipOptions
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>
