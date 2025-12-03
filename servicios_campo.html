@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menos Oficina, Más Negocio - Seroca</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #F0FDF4;
+            /* Fondo verde muy suave, toque "campo" */
+            color: #14532D;
+            /* Verde oscuro para texto */
+        }
+
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 500px;
+            margin: 0 auto;
+            height: 300px;
+        }
+
+        .gradient-text {
+            background: linear-gradient(to right, #15803D, #0D9488);
+            /* Verdes y Cyans */
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .card-service {
+            transition: all 0.3s ease;
+            border-bottom: 4px solid transparent;
+        }
+
+        .card-service:hover {
+            transform: translateY(-5px);
+            border-bottom-color: #15803D;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Mockup Phone CSS */
+        .phone-mockup {
+            border: 8px solid #374151;
+            border-radius: 20px;
+            overflow: hidden;
+            position: relative;
+            background: white;
+            max-width: 280px;
+            margin: 0 auto;
+        }
+
+        .phone-notch {
+            background: #374151;
+            width: 40%;
+            height: 15px;
+            position: absolute;
+            top: 0;
+            left: 30%;
+            border-bottom-left-radius: 8px;
+            border-bottom-right-radius: 8px;
+            z-index: 20;
+        }
+
+        /* Chat Bubble CSS */
+        .chat-bubble {
+            padding: 8px 12px;
+            border-radius: 12px;
+            margin-bottom: 8px;
+            font-size: 0.75rem;
+            max-width: 85%;
+        }
+
+        .chat-user {
+            background-color: #DCFCE7;
+            color: #14532D;
+            align-self: flex-end;
+            border-bottom-right-radius: 2px;
+            margin-left: auto;
+        }
+
+        .chat-bot {
+            background-color: #F3F4F6;
+            color: #374151;
+            align-self: flex-start;
+            border-bottom-left-radius: 2px;
+        }
+    </style>
+</head>
+
+<body class="bg-stone-50">
+
+    <!-- Header con Logo (Igual que Index) -->
+    <header class="bg-white shadow-sm sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
+            <div class="flex items-center">
+                <!-- LOGO CON FALLBACK -->
+                <img src="seroca logo.jpeg" alt="Logo Seroca" class="h-12 mr-4 object-contain"
+                    onerror="this.style.display='none'; document.getElementById('logo-fallback').style.display='block';">
+
+                <!-- Texto de respaldo (oculto por defecto) -->
+                <h2 id="logo-fallback" style="display:none;"
+                    class="text-2xl font-extrabold text-green-900 mr-4 tracking-tight">SEROCA</h2>
+
+                <div class="h-8 w-px bg-stone-300 mx-2"></div>
+                <h1 class="text-sm font-semibold text-stone-500 uppercase tracking-wide hidden md:block">Soluciones de
+                    Campo</h1>
+            </div>
+            <nav class="hidden md:flex space-x-8">
+                <a href="index.html" class="text-stone-500 hover:text-green-900 font-medium transition">Informe ROI</a>
+                <a href="servicios_campo.html"
+                    class="text-green-700 font-bold border-b-2 border-green-700">Aplicaciones</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+
+        <!-- Hero Section -->
+        <div class="text-center mb-16">
+            <span
+                class="bg-green-100 text-green-800 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wide">Jardinería
+                • Mantenimiento • SAT</span>
+            <h2 class="text-4xl md:text-6xl font-extrabold text-stone-900 mt-4 mb-6 leading-tight">
+                Menos Oficina, <br>
+                <span class="gradient-text">Más Negocio</span>
+            </h2>
+            <p class="text-xl text-stone-600 max-w-3xl mx-auto">
+                El verdadero trabajo no se hace delante de un ordenador. Le asignamos un "Robot de Software" a su equipo
+                para eliminar el papeleo sin cambiar su forma de trabajar.
+            </p>
+        </div>
+
+        <!-- Problem vs Solution Comparison -->
+        <section class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-24">
+            <!-- The Problem -->
+            <div class="bg-red-50 p-8 rounded-2xl border border-red-100 relative overflow-hidden group">
+                <div
+                    class="absolute top-0 right-0 p-4 opacity-10 text-9xl transform rotate-12 group-hover:rotate-0 transition duration-500">
+                    📝</div>
+                <h3 class="text-2xl font-bold text-red-800 mb-4">El Problema: Caos Analógico</h3>
+                <ul class="space-y-4">
+                    <li class="flex items-start">
+                        <span class="text-red-500 mr-3 text-xl">✖</span>
+                        <p class="text-stone-700 text-sm"><strong>Partes perdidos:</strong> "El cliente dice que no
+                            fuimos". Papeles que se mojan o pierden.</p>
+                    </li>
+                    <li class="flex items-start">
+                        <span class="text-red-500 mr-3 text-xl">✖</span>
+                        <p class="text-stone-700 text-sm"><strong>Presupuestos lentos:</strong> Días para contestar a un
+                            cliente interesado. La venta se enfría.</p>
+                    </li>
+                    <li class="flex items-start">
+                        <span class="text-red-500 mr-3 text-xl">✖</span>
+                        <p class="text-stone-700 text-sm"><strong>Descontrol de equipos:</strong> "¿Quién tiene la
+                            desbrozadora?". Nadie lo sabe.</p>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- The Solution -->
+            <div class="bg-green-50 p-8 rounded-2xl border border-green-100 relative overflow-hidden group">
+                <div
+                    class="absolute top-0 right-0 p-4 opacity-10 text-9xl transform -rotate-12 group-hover:rotate-0 transition duration-500">
+                    🤖</div>
+                <h3 class="text-2xl font-bold text-green-800 mb-4">La Solución: "The People Code"</h3>
+                <ul class="space-y-4">
+                    <li class="flex items-start">
+                        <span class="text-green-600 mr-3 text-xl">✔</span>
+                        <p class="text-stone-700 text-sm"><strong>Informes Automáticos:</strong> Foto por WhatsApp = PDF
+                            enviado al cliente al instante.</p>
+                    </li>
+                    <li class="flex items-start">
+                        <span class="text-green-600 mr-3 text-xl">✔</span>
+                        <p class="text-stone-700 text-sm"><strong>Atención 24/7:</strong> Un bot cualifica leads
+                            mientras duermes.</p>
+                    </li>
+                    <li class="flex items-start">
+                        <span class="text-green-600 mr-3 text-xl">✔</span>
+                        <p class="text-stone-700 text-sm"><strong>Control Total:</strong> Escaneo QR para inventario y
+                            trazabilidad GPS.</p>
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Service 1: The Automated Report (Visual Flow) -->
+        <section class="mb-24">
+            <div class="bg-white rounded-3xl shadow-lg border border-stone-200 overflow-hidden">
+                <div class="grid grid-cols-1 lg:grid-cols-2">
+                    <div class="p-8 md:p-12 flex flex-col justify-center">
+                        <div
+                            class="inline-block bg-green-100 text-green-800 px-3 py-1 rounded-full text-xs font-bold mb-4 w-fit">
+                            SERVICIO ESTRELLA</div>
+                        <h3 class="text-3xl font-bold text-stone-900 mb-4">El Parte de Trabajo que nunca se pierde</h3>
+                        <p class="text-stone-600 mb-6">
+                            Olvídese de descifrar letra a mano. Su operario simplemente envía una foto y una nota de
+                            audio por WhatsApp. Nuestro sistema hace el resto.
+                        </p>
+                        <ul class="space-y-2 mb-8">
+                            <li class="flex items-center text-sm font-medium text-stone-700"><span
+                                    class="w-2 h-2 bg-green-500 rounded-full mr-2"></span> Geolocalización automática
+                            </li>
+                            <li class="flex items-center text-sm font-medium text-stone-700"><span
+                                    class="w-2 h-2 bg-green-500 rounded-full mr-2"></span> Registro de hora exacto</li>
+                            <li class="flex items-center text-sm font-medium text-stone-700"><span
+                                    class="w-2 h-2 bg-green-500 rounded-full mr-2"></span> PDF profesional con su logo
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Visual Flow Simulation -->
+                    <div class="bg-stone-100 p-8 flex items-center justify-center relative">
+                        <!-- Connecting Arrow Line -->
+                        <div class="absolute top-1/2 left-10 right-10 h-1 bg-stone-300 -z-0 hidden md:block"></div>
+
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 w-full z-10">
+                            <!-- Step 1 -->
+                            <div
+                                class="bg-white p-4 rounded-xl shadow-md text-center transform hover:scale-105 transition">
+                                <div class="text-4xl mb-2">📸</div>
+                                <div class="font-bold text-stone-800 text-sm">1. Operario</div>
+                                <div class="text-xs text-stone-500">Envía foto por WhatsApp</div>
+                            </div>
+                            <!-- Step 2 -->
+                            <div
+                                class="bg-green-600 p-4 rounded-xl shadow-md text-center text-white transform hover:scale-110 transition">
+                                <div class="text-4xl mb-2">⚙️</div>
+                                <div class="font-bold text-sm">2. Sistema IA</div>
+                                <div class="text-xs text-green-100">Genera Informe PDF</div>
+                            </div>
+                            <!-- Step 3 -->
+                            <div
+                                class="bg-white p-4 rounded-xl shadow-md text-center transform hover:scale-105 transition">
+                                <div class="text-4xl mb-2">📩</div>
+                                <div class="font-bold text-stone-800 text-sm">3. Cliente</div>
+                                <div class="text-xs text-stone-500">Recibe Email al instante</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Service 2 & 3: Leads & Inventory -->
+        <section class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-24">
+
+            <!-- Lead Qualification -->
+            <div class="bg-white p-8 rounded-3xl shadow-sm border border-stone-200">
+                <h3 class="text-2xl font-bold text-stone-900 mb-2">Presupuestos Automáticos</h3>
+                <p class="text-stone-500 text-sm mb-6">Convierta el interés en visita, no en espera.</p>
+
+                <div class="phone-mockup shadow-inner bg-gray-50 h-80 flex flex-col">
+                    <div class="phone-notch"></div>
+                    <div class="flex-1 p-4 flex flex-col overflow-y-auto pt-8">
+                        <div class="text-center text-xs text-gray-400 mb-4">Hoy 10:23</div>
+                        <!-- Chat Flow -->
+                        <div class="chat-bubble chat-user">Hola, quiero presupuesto para podar el jardín.</div>
+                        <div class="chat-bubble chat-bot">¡Hola! 👋 Claro que sí. Para darte un precio aproximado,
+                            ¿podrías enviarme una foto del jardín y los m2?</div>
+                        <div class="chat-bubble chat-user">Son unos 50m2. Aquí va la foto. 🌳</div>
+                        <div class="chat-bubble chat-bot">¡Perfecto! ✅ Recibido. Un técnico puede pasar mañana a las
+                            10:00 para confirmar. ¿Te va bien?</div>
+                    </div>
+                    <!-- Input Area -->
+                    <div class="bg-white p-3 border-t border-gray-200 flex items-center">
+                        <div class="w-6 h-6 rounded-full bg-gray-200 mr-2"></div>
+                        <div class="flex-1 h-8 bg-gray-100 rounded-full"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Inventory Control -->
+            <div class="bg-stone-900 p-8 rounded-3xl shadow-sm text-white relative overflow-hidden">
+                <div class="relative z-10">
+                    <h3 class="text-2xl font-bold mb-2">Control de Maquinaria</h3>
+                    <p class="text-stone-400 text-sm mb-8">Sepa siempre dónde está cada herramienta.</p>
+
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="bg-stone-800 p-4 rounded-xl border border-stone-700">
+                            <div class="text-3xl mb-2">⬛</div>
+                            <h4 class="font-bold text-sm">Código QR</h4>
+                            <p class="text-xs text-stone-500 mt-1">Pegatinas únicas en cada máquina.</p>
+                        </div>
+                        <div class="bg-stone-800 p-4 rounded-xl border border-stone-700">
+                            <div class="text-3xl mb-2">📱</div>
+                            <h4 class="font-bold text-sm">Escaneo Rápido</h4>
+                            <p class="text-xs text-stone-500 mt-1">Check-in / Check-out al cogerla.</p>
+                        </div>
+                    </div>
+
+                    <div class="mt-8 bg-green-900/30 p-4 rounded-xl border border-green-800">
+                        <div class="flex justify-between items-center text-xs mb-2">
+                            <span class="text-green-400 font-bold">ESTADO ACTUAL</span>
+                            <span class="text-stone-400">Hace 5 min</span>
+                        </div>
+                        <div class="flex items-center justify-between bg-stone-800 p-2 rounded mb-2">
+                            <span>Desbrozadora #1</span>
+                            <span class="text-green-400 text-xs">🟢 En uso (Juan)</span>
+                        </div>
+                        <div class="flex items-center justify-between bg-stone-800 p-2 rounded">
+                            <span>Cortacésped #3</span>
+                            <span class="text-stone-500 text-xs">⚪ En Almacén</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- Decor -->
+                <div class="absolute -bottom-10 -right-10 text-9xl opacity-5">🚜</div>
+            </div>
+        </section>
+
+        <!-- Stats / Results Section -->
+        <section class="mb-20">
+            <h3 class="text-2xl font-bold text-stone-900 mb-8 text-center">Resultados Reales</h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                <div class="bg-white p-6 rounded-2xl shadow-sm">
+                    <h4 class="text-center font-bold mb-4 text-stone-600">Distribución de Tiempo (Operario)</h4>
+                    <div class="chart-container">
+                        <canvas id="timeComparisonChart"></canvas>
+                    </div>
+                </div>
+                <div class="space-y-6">
+                    <div class="bg-green-50 p-6 rounded-xl border-l-4 border-green-500">
+                        <div class="text-3xl font-bold text-green-700 mb-1">100%</div>
+                        <div class="text-sm text-green-900 font-bold">Informes Enviados</div>
+                        <p class="text-xs text-green-700 mt-1">Ni un solo parte de trabajo perdido u olvidado.</p>
+                    </div>
+                    <div class="bg-blue-50 p-6 rounded-xl border-l-4 border-blue-500">
+                        <div class="text-3xl font-bold text-blue-700 mb-1">0%</div>
+                        <div class="text-sm text-blue-900 font-bold">Errores de Facturación</div>
+                        <p class="text-xs text-blue-700 mt-1">Los datos vienen directos del campo, sin transcripción
+                            manual.</p>
+                    </div>
+                    <div class="bg-stone-100 p-6 rounded-xl border-l-4 border-stone-500">
+                        <div class="text-3xl font-bold text-stone-700 mb-1">Total</div>
+                        <div class="text-sm text-stone-900 font-bold">Trazabilidad</div>
+                        <p class="text-xs text-stone-700 mt-1">Cuándo, Cómo y Dónde. La prueba irrefutable para sus
+                            clientes.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Minimal Footer -->
+        <footer class="text-center py-8 border-t border-stone-200 mt-12">
+            <p class="text-sm text-stone-400">© 2023 Seroca. Basado en la metodología "The People Code".</p>
+        </footer>
+
+    </main>
+
+    <script>
+        // --- Logic for Tooltips ---
+        const commonTooltipOptions = {
+            callbacks: {
+                title: function (tooltipItems) {
+                    return tooltipItems[0].label;
+                }
+            }
+        };
+
+        // --- Chart: Time Comparison ---
+        const ctxTime = document.getElementById('timeComparisonChart').getContext('2d');
+        new Chart(ctxTime, {
+            type: 'doughnut',
+            data: {
+                labels: ['Trabajo Facturable (Jardín/Obra)', 'Burocracia (Papel/Llamadas)', 'Desplazamientos'],
+                datasets: [{
+                    label: 'Tiempo Diario (Antes)',
+                    data: [50, 30, 20], // Lots of bureaucracy
+                    backgroundColor: ['#d6d3d1', '#ef4444', '#78716c'],
+                    borderWidth: 0,
+                    hidden: true // Hide initially to show the "After" first or toggle
+                },
+                {
+                    label: 'Tiempo Diario (Con Seroca)',
+                    data: [75, 5, 20], // Bureaucracy minimized
+                    backgroundColor: [
+                        '#15803D', // Green (Facturable)
+                        '#f87171', // Red (Burocracia - small)
+                        '#78716c'  // Stone (Desplazamientos)
+                    ],
+                    borderWidth: 2,
+                    borderColor: '#ffffff'
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                cutout: '70%',
+                plugins: {
+                    legend: { position: 'bottom', labels: { usePointStyle: true, font: { size: 10 } } },
+                    tooltip: commonTooltipOptions,
+                    title: { display: true, text: 'Recuperación de Productividad' }
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>
