@@ -12,35 +12,23 @@
         body {
             font-family: 'Inter', sans-serif;
             background-color: #F0FDF4;
-            /* Fondo verde muy suave, toque "campo" */
+            /* Fondo verde muy suave */
             color: #14532D;
-            /* Verde oscuro para texto */
+            /* Verde oscuro */
         }
 
         .chart-container {
             position: relative;
             width: 100%;
-            max-width: 500px;
+            max-width: 600px;
             margin: 0 auto;
-            height: 300px;
+            height: 350px;
         }
 
         .gradient-text {
             background: linear-gradient(to right, #15803D, #0D9488);
-            /* Verdes y Cyans */
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-        }
-
-        .card-service {
-            transition: all 0.3s ease;
-            border-bottom: 4px solid transparent;
-        }
-
-        .card-service:hover {
-            transform: translateY(-5px);
-            border-bottom-color: #15803D;
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
         }
 
         /* Mockup Phone CSS */
@@ -89,20 +77,36 @@
             align-self: flex-start;
             border-bottom-left-radius: 2px;
         }
+
+        /* Use Case Cards with Visuals */
+        .use-case-card {
+            background: white;
+            border-radius: 1rem;
+            padding: 1.5rem;
+            border: 1px solid #E7E5E4;
+            transition: all 0.2s;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .use-case-card:hover {
+            border-color: #16A34A;
+            box-shadow: 0 10px 30px -10px rgba(22, 163, 74, 0.2);
+            transform: translateY(-2px);
+        }
     </style>
 </head>
 
 <body class="bg-stone-50">
 
-    <!-- Header con Logo (Igual que Index) -->
+    <!-- Header -->
     <header class="bg-white shadow-sm sticky top-0 z-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
             <div class="flex items-center">
-                <!-- LOGO CON FALLBACK -->
+                <!-- LOGO -->
                 <img src="seroca logo.jpeg" alt="Logo Seroca" class="h-12 mr-4 object-contain"
                     onerror="this.style.display='none'; document.getElementById('logo-fallback').style.display='block';">
-
-                <!-- Texto de respaldo (oculto por defecto) -->
                 <h2 id="logo-fallback" style="display:none;"
                     class="text-2xl font-extrabold text-green-900 mr-4 tracking-tight">SEROCA</h2>
 
@@ -115,7 +119,26 @@
                 <a href="servicios_campo.html"
                     class="text-green-700 font-bold border-b-2 border-green-700">Aplicaciones</a>
             </nav>
+            <!-- Mobile Menu Button -->
+            <div class="md:hidden flex items-center">
+                <button id="mobile-menu-btn" class="text-stone-500 hover:text-green-900 focus:outline-none">
+                    <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+            </div>
         </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-stone-100">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="index.html"
+                    class="block px-3 py-2 rounded-md text-base font-medium text-stone-500 hover:text-green-900 hover:bg-stone-50">Informe
+                    ROI</a>
+                <a href="servicios_campo.html"
+                    class="block px-3 py-2 rounded-md text-base font-medium text-green-700 bg-green-50">Aplicaciones</a>
+            </div>
     </header>
 
     <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
@@ -135,60 +158,52 @@
             </p>
         </div>
 
-        <!-- Problem vs Solution Comparison -->
+        <!-- Problem vs Solution -->
         <section class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-24">
-            <!-- The Problem -->
             <div class="bg-red-50 p-8 rounded-2xl border border-red-100 relative overflow-hidden group">
                 <div
                     class="absolute top-0 right-0 p-4 opacity-10 text-9xl transform rotate-12 group-hover:rotate-0 transition duration-500">
                     📝</div>
                 <h3 class="text-2xl font-bold text-red-800 mb-4">El Problema: Caos Analógico</h3>
                 <ul class="space-y-4">
-                    <li class="flex items-start">
-                        <span class="text-red-500 mr-3 text-xl">✖</span>
+                    <li class="flex items-start"><span class="text-red-500 mr-3 text-xl">✖</span>
                         <p class="text-stone-700 text-sm"><strong>Partes perdidos:</strong> "El cliente dice que no
-                            fuimos". Papeles que se mojan o pierden.</p>
+                            fuimos".</p>
                     </li>
-                    <li class="flex items-start">
-                        <span class="text-red-500 mr-3 text-xl">✖</span>
-                        <p class="text-stone-700 text-sm"><strong>Presupuestos lentos:</strong> Días para contestar a un
-                            cliente interesado. La venta se enfría.</p>
+                    <li class="flex items-start"><span class="text-red-500 mr-3 text-xl">✖</span>
+                        <p class="text-stone-700 text-sm"><strong>Presupuestos lentos:</strong> Días para contestar,
+                            venta perdida.</p>
                     </li>
-                    <li class="flex items-start">
-                        <span class="text-red-500 mr-3 text-xl">✖</span>
-                        <p class="text-stone-700 text-sm"><strong>Descontrol de equipos:</strong> "¿Quién tiene la
-                            desbrozadora?". Nadie lo sabe.</p>
+                    <li class="flex items-start"><span class="text-red-500 mr-3 text-xl">✖</span>
+                        <p class="text-stone-700 text-sm"><strong>Descontrol:</strong> Herramientas perdidas y rutas
+                            ineficientes.</p>
                     </li>
                 </ul>
             </div>
 
-            <!-- The Solution -->
             <div class="bg-green-50 p-8 rounded-2xl border border-green-100 relative overflow-hidden group">
                 <div
                     class="absolute top-0 right-0 p-4 opacity-10 text-9xl transform -rotate-12 group-hover:rotate-0 transition duration-500">
                     🤖</div>
-                <h3 class="text-2xl font-bold text-green-800 mb-4">La Solución: "The People Code"</h3>
+                <h3 class="text-2xl font-bold text-green-800 mb-4">La Solución: Seroca</h3>
                 <ul class="space-y-4">
-                    <li class="flex items-start">
-                        <span class="text-green-600 mr-3 text-xl">✔</span>
+                    <li class="flex items-start"><span class="text-green-600 mr-3 text-xl">✔</span>
                         <p class="text-stone-700 text-sm"><strong>Informes Automáticos:</strong> Foto por WhatsApp = PDF
-                            enviado al cliente al instante.</p>
+                            al cliente.</p>
                     </li>
-                    <li class="flex items-start">
-                        <span class="text-green-600 mr-3 text-xl">✔</span>
-                        <p class="text-stone-700 text-sm"><strong>Atención 24/7:</strong> Un bot cualifica leads
-                            mientras duermes.</p>
+                    <li class="flex items-start"><span class="text-green-600 mr-3 text-xl">✔</span>
+                        <p class="text-stone-700 text-sm"><strong>Atención 24/7:</strong> Bot cualifica leads
+                            automáticamente.</p>
                     </li>
-                    <li class="flex items-start">
-                        <span class="text-green-600 mr-3 text-xl">✔</span>
-                        <p class="text-stone-700 text-sm"><strong>Control Total:</strong> Escaneo QR para inventario y
-                            trazabilidad GPS.</p>
+                    <li class="flex items-start"><span class="text-green-600 mr-3 text-xl">✔</span>
+                        <p class="text-stone-700 text-sm"><strong>Control Total:</strong> Escaneo QR para inventario.
+                        </p>
                     </li>
                 </ul>
             </div>
         </section>
 
-        <!-- Service 1: The Automated Report (Visual Flow) -->
+        <!-- Service 1: The Automated Report -->
         <section class="mb-24">
             <div class="bg-white rounded-3xl shadow-lg border border-stone-200 overflow-hidden">
                 <div class="grid grid-cols-1 lg:grid-cols-2">
@@ -212,28 +227,21 @@
                             </li>
                         </ul>
                     </div>
-
-                    <!-- Visual Flow Simulation -->
                     <div class="bg-stone-100 p-8 flex items-center justify-center relative">
-                        <!-- Connecting Arrow Line -->
                         <div class="absolute top-1/2 left-10 right-10 h-1 bg-stone-300 -z-0 hidden md:block"></div>
-
                         <div class="grid grid-cols-1 md:grid-cols-3 gap-6 w-full z-10">
-                            <!-- Step 1 -->
                             <div
                                 class="bg-white p-4 rounded-xl shadow-md text-center transform hover:scale-105 transition">
                                 <div class="text-4xl mb-2">📸</div>
                                 <div class="font-bold text-stone-800 text-sm">1. Operario</div>
                                 <div class="text-xs text-stone-500">Envía foto por WhatsApp</div>
                             </div>
-                            <!-- Step 2 -->
                             <div
                                 class="bg-green-600 p-4 rounded-xl shadow-md text-center text-white transform hover:scale-110 transition">
                                 <div class="text-4xl mb-2">⚙️</div>
                                 <div class="font-bold text-sm">2. Sistema IA</div>
                                 <div class="text-xs text-green-100">Genera Informe PDF</div>
                             </div>
-                            <!-- Step 3 -->
                             <div
                                 class="bg-white p-4 rounded-xl shadow-md text-center transform hover:scale-105 transition">
                                 <div class="text-4xl mb-2">📩</div>
@@ -248,28 +256,20 @@
 
         <!-- Service 2 & 3: Leads & Inventory -->
         <section class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-24">
-
             <!-- Lead Qualification -->
             <div class="bg-white p-8 rounded-3xl shadow-sm border border-stone-200">
                 <h3 class="text-2xl font-bold text-stone-900 mb-2">Presupuestos Automáticos</h3>
                 <p class="text-stone-500 text-sm mb-6">Convierta el interés en visita, no en espera.</p>
-
                 <div class="phone-mockup shadow-inner bg-gray-50 h-80 flex flex-col">
                     <div class="phone-notch"></div>
                     <div class="flex-1 p-4 flex flex-col overflow-y-auto pt-8">
                         <div class="text-center text-xs text-gray-400 mb-4">Hoy 10:23</div>
-                        <!-- Chat Flow -->
                         <div class="chat-bubble chat-user">Hola, quiero presupuesto para podar el jardín.</div>
                         <div class="chat-bubble chat-bot">¡Hola! 👋 Claro que sí. Para darte un precio aproximado,
                             ¿podrías enviarme una foto del jardín y los m2?</div>
                         <div class="chat-bubble chat-user">Son unos 50m2. Aquí va la foto. 🌳</div>
                         <div class="chat-bubble chat-bot">¡Perfecto! ✅ Recibido. Un técnico puede pasar mañana a las
-                            10:00 para confirmar. ¿Te va bien?</div>
-                    </div>
-                    <!-- Input Area -->
-                    <div class="bg-white p-3 border-t border-gray-200 flex items-center">
-                        <div class="w-6 h-6 rounded-full bg-gray-200 mr-2"></div>
-                        <div class="flex-1 h-8 bg-gray-100 rounded-full"></div>
+                            10:00 para confirmar.</div>
                     </div>
                 </div>
             </div>
@@ -279,67 +279,144 @@
                 <div class="relative z-10">
                     <h3 class="text-2xl font-bold mb-2">Control de Maquinaria</h3>
                     <p class="text-stone-400 text-sm mb-8">Sepa siempre dónde está cada herramienta.</p>
-
                     <div class="grid grid-cols-2 gap-4">
                         <div class="bg-stone-800 p-4 rounded-xl border border-stone-700">
                             <div class="text-3xl mb-2">⬛</div>
                             <h4 class="font-bold text-sm">Código QR</h4>
-                            <p class="text-xs text-stone-500 mt-1">Pegatinas únicas en cada máquina.</p>
+                            <p class="text-xs text-stone-500 mt-1">Pegatinas únicas.</p>
                         </div>
                         <div class="bg-stone-800 p-4 rounded-xl border border-stone-700">
                             <div class="text-3xl mb-2">📱</div>
                             <h4 class="font-bold text-sm">Escaneo Rápido</h4>
-                            <p class="text-xs text-stone-500 mt-1">Check-in / Check-out al cogerla.</p>
+                            <p class="text-xs text-stone-500 mt-1">Check-in / Check-out.</p>
                         </div>
                     </div>
-
                     <div class="mt-8 bg-green-900/30 p-4 rounded-xl border border-green-800">
-                        <div class="flex justify-between items-center text-xs mb-2">
-                            <span class="text-green-400 font-bold">ESTADO ACTUAL</span>
-                            <span class="text-stone-400">Hace 5 min</span>
-                        </div>
-                        <div class="flex items-center justify-between bg-stone-800 p-2 rounded mb-2">
-                            <span>Desbrozadora #1</span>
-                            <span class="text-green-400 text-xs">🟢 En uso (Juan)</span>
-                        </div>
-                        <div class="flex items-center justify-between bg-stone-800 p-2 rounded">
-                            <span>Cortacésped #3</span>
-                            <span class="text-stone-500 text-xs">⚪ En Almacén</span>
-                        </div>
+                        <div class="flex justify-between items-center text-xs mb-2"><span
+                                class="text-green-400 font-bold">ESTADO ACTUAL</span></div>
+                        <div class="flex items-center justify-between bg-stone-800 p-2 rounded mb-2"><span>Desbrozadora
+                                #1</span><span class="text-green-400 text-xs">🟢 En uso (Juan)</span></div>
+                        <div class="flex items-center justify-between bg-stone-800 p-2 rounded"><span>Cortacésped
+                                #3</span><span class="text-stone-500 text-xs">⚪ En Almacén</span></div>
                     </div>
                 </div>
-                <!-- Decor -->
-                <div class="absolute -bottom-10 -right-10 text-9xl opacity-5">🚜</div>
             </div>
         </section>
 
-        <!-- Stats / Results Section -->
+        <!-- SECCIÓN: EL DÍA A DÍA, SIMPLIFICADO (CON IMÁGENES/VISUALES RECUPERADAS) -->
+        <section class="mb-24">
+            <h3 class="text-3xl font-bold text-stone-900 mb-8 text-center">El Día a Día, Simplificado</h3>
+            <p class="text-stone-600 text-center max-w-2xl mx-auto mb-12">
+                Pequeñas automatizaciones que ahorran horas de gestión cada semana.
+            </p>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+
+                <!-- Card 1: Rutas -->
+                <div class="use-case-card group">
+                    <div class="flex items-center mb-4">
+                        <div class="w-10 h-10 bg-green-100 rounded-full flex items-center justify-center text-xl mr-3">
+                            🗺️</div>
+                        <h4 class="font-bold text-stone-800 text-lg">Rutas Automáticas</h4>
+                    </div>
+                    <p class="text-sm text-stone-600 mb-auto">
+                        Adiós a las llamadas a las 7am. El sistema envía las rutas por WhatsApp automáticamente.
+                    </p>
+
+                    <!-- Visual Snippet: WhatsApp Message -->
+                    <div
+                        class="bg-stone-50 p-3 rounded-lg text-xs text-stone-500 border border-stone-200 font-mono mt-4 shadow-sm">
+                        <div class="flex items-center mb-1 text-[10px] text-green-700 font-bold justify-between">
+                            <span>WhatsApp Bot</span> <span>20:00</span>
+                        </div>
+                        <div class="text-stone-700">
+                            "Juan, mañana tienes 3 visitas.<br>
+                            1ª parada: <strong>Calle Roble 7</strong><br>
+                            📍 <span class="text-blue-500 underline">Ver Ubicación</span>"
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 2: Facturación -->
+                <div class="use-case-card group">
+                    <div class="flex items-center mb-4">
+                        <div class="w-10 h-10 bg-green-100 rounded-full flex items-center justify-center text-xl mr-3">
+                            💶</div>
+                        <h4 class="font-bold text-stone-800 text-lg">Facturación Directa</h4>
+                    </div>
+                    <p class="text-sm text-stone-600 mb-auto">
+                        Al firmar el parte, la factura se crea sola en borrador. Sin picar datos.
+                    </p>
+
+                    <!-- Visual Snippet: System Status -->
+                    <div
+                        class="bg-stone-50 p-3 rounded-lg text-xs text-stone-500 border border-stone-200 font-mono mt-4 shadow-sm">
+                        <div class="flex items-center mb-2">
+                            <span class="w-2 h-2 rounded-full bg-green-500 mr-2"></span>
+                            <span class="font-bold text-stone-800">Trabajo Finalizado</span>
+                        </div>
+                        <div class="border-t border-stone-200 my-1"></div>
+                        <div class="flex justify-between items-center pt-1">
+                            <span>Acción Auto:</span>
+                            <span class="bg-blue-100 text-blue-800 px-1 rounded font-bold">Crear Factura</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 3: Taller -->
+                <div class="use-case-card group">
+                    <div class="flex items-center mb-4">
+                        <div class="w-10 h-10 bg-green-100 rounded-full flex items-center justify-center text-xl mr-3">
+                            🔧</div>
+                        <h4 class="font-bold text-stone-800 text-lg">Alertas de Taller</h4>
+                    </div>
+                    <p class="text-sm text-stone-600 mb-auto">
+                        El sistema controla las horas de uso y te avisa antes de que la máquina se rompa.
+                    </p>
+
+                    <!-- Visual Snippet: Alert Box -->
+                    <div
+                        class="bg-red-50 p-3 rounded-lg text-xs text-red-800 border border-red-100 font-mono mt-4 shadow-sm">
+                        <div class="flex items-center font-bold mb-1">⚠️ ALERTA MANTENIMIENTO</div>
+                        <p class="mb-2">Cortacésped #2 ha superado las 50h de uso.</p>
+                        <div
+                            class="bg-white px-2 py-1 rounded border border-red-100 text-center font-bold text-red-600 cursor-pointer text-[10px]">
+                            PROGRAMAR REVISIÓN
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Stats / Results Section: BARRAS HORIZONTALES -->
         <section class="mb-20">
             <h3 class="text-2xl font-bold text-stone-900 mb-8 text-center">Resultados Reales</h3>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+
                 <div class="bg-white p-6 rounded-2xl shadow-sm">
-                    <h4 class="text-center font-bold mb-4 text-stone-600">Distribución de Tiempo (Operario)</h4>
+                    <h4 class="text-center font-bold mb-1 text-stone-600">Tiempo Productivo vs. Improductivo</h4>
+                    <p class="text-center text-xs text-stone-400 mb-4">Comparativa de una jornada de 8 horas</p>
                     <div class="chart-container">
                         <canvas id="timeComparisonChart"></canvas>
                     </div>
                 </div>
+
                 <div class="space-y-6">
                     <div class="bg-green-50 p-6 rounded-xl border-l-4 border-green-500">
-                        <div class="text-3xl font-bold text-green-700 mb-1">100%</div>
-                        <div class="text-sm text-green-900 font-bold">Informes Enviados</div>
-                        <p class="text-xs text-green-700 mt-1">Ni un solo parte de trabajo perdido u olvidado.</p>
+                        <div class="text-xl font-bold text-green-800 mb-2">💰 Más Facturación</div>
+                        <p class="text-sm text-green-700">Al eliminar 2 horas diarias de papeleo, cada operario puede
+                            realizar <strong>1 visita extra al día</strong>.</p>
                     </div>
-                    <div class="bg-blue-50 p-6 rounded-xl border-l-4 border-blue-500">
-                        <div class="text-3xl font-bold text-blue-700 mb-1">0%</div>
-                        <div class="text-sm text-blue-900 font-bold">Errores de Facturación</div>
-                        <p class="text-xs text-blue-700 mt-1">Los datos vienen directos del campo, sin transcripción
-                            manual.</p>
+                    <div class="bg-red-50 p-6 rounded-xl border-l-4 border-red-500">
+                        <div class="text-xl font-bold text-red-800 mb-2">📉 Menos "Burocracia"</div>
+                        <p class="text-sm text-red-700">El tiempo dedicado a rellenar partes y perseguir facturas se
+                            reduce casi a cero.</p>
                     </div>
                     <div class="bg-stone-100 p-6 rounded-xl border-l-4 border-stone-500">
-                        <div class="text-3xl font-bold text-stone-700 mb-1">Total</div>
-                        <div class="text-sm text-stone-900 font-bold">Trazabilidad</div>
-                        <p class="text-xs text-stone-700 mt-1">Cuándo, Cómo y Dónde. La prueba irrefutable para sus
-                            clientes.</p>
+                        <div class="text-xl font-bold text-stone-800 mb-2">🤝 Trazabilidad Total</div>
+                        <p class="text-sm text-stone-700">El cliente recibe la prueba del trabajo al instante. Se
+                            acabaron las discusiones.</p>
                     </div>
                 </div>
             </div>
@@ -347,54 +424,74 @@
 
         <!-- Minimal Footer -->
         <footer class="text-center py-8 border-t border-stone-200 mt-12">
-            <p class="text-sm text-stone-400">© 2023 Seroca. Basado en la metodología "The People Code".</p>
+            <p class="text-sm text-stone-400">© 2023 Seroca. Soluciones de automatización a medida.</p>
         </footer>
 
     </main>
 
     <script>
-        // --- Logic for Tooltips ---
+        // --- Mobile Menu Logic ---
+        const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
+
+        btn.addEventListener('click', () => {
+            menu.classList.toggle('hidden');
+        });
+
+        // --- Tooltip Logic ---
         const commonTooltipOptions = {
             callbacks: {
-                title: function (tooltipItems) {
-                    return tooltipItems[0].label;
+                title: function (tooltipItems) { return tooltipItems[0].label; },
+                label: function (context) {
+                    let label = context.dataset.label || '';
+                    if (label) { label += ': '; }
+                    if (context.parsed.x !== null) { label += context.parsed.x + '%'; }
+                    return label;
                 }
             }
         };
 
-        // --- Chart: Time Comparison ---
+        // --- Chart: Stacked Horizontal Bar ---
         const ctxTime = document.getElementById('timeComparisonChart').getContext('2d');
         new Chart(ctxTime, {
-            type: 'doughnut',
+            type: 'bar',
             data: {
-                labels: ['Trabajo Facturable (Jardín/Obra)', 'Burocracia (Papel/Llamadas)', 'Desplazamientos'],
-                datasets: [{
-                    label: 'Tiempo Diario (Antes)',
-                    data: [50, 30, 20], // Lots of bureaucracy
-                    backgroundColor: ['#d6d3d1', '#ef4444', '#78716c'],
-                    borderWidth: 0,
-                    hidden: true // Hide initially to show the "After" first or toggle
-                },
-                {
-                    label: 'Tiempo Diario (Con Seroca)',
-                    data: [75, 5, 20], // Bureaucracy minimized
-                    backgroundColor: [
-                        '#15803D', // Green (Facturable)
-                        '#f87171', // Red (Burocracia - small)
-                        '#78716c'  // Stone (Desplazamientos)
-                    ],
-                    borderWidth: 2,
-                    borderColor: '#ffffff'
-                }]
+                labels: ['Empresa Manual', 'Empresa Seroca'],
+                datasets: [
+                    {
+                        label: 'Trabajo Facturable (Ingresos)',
+                        data: [50, 85], // 50% vs 85%
+                        backgroundColor: '#15803D', // Verde fuerte
+                    },
+                    {
+                        label: 'Papeleo y Gestión (Coste)',
+                        data: [30, 5], // 30% vs 5% (Gran reducción)
+                        backgroundColor: '#EF4444', // Rojo
+                    },
+                    {
+                        label: 'Desplazamientos',
+                        data: [20, 10], // 20% vs 10% (Mejores rutas)
+                        backgroundColor: '#78716C', // Gris
+                    }
+                ]
             },
             options: {
+                indexAxis: 'y', // Hace las barras horizontales
                 responsive: true,
                 maintainAspectRatio: false,
-                cutout: '70%',
+                scales: {
+                    x: {
+                        stacked: true,
+                        max: 100,
+                        title: { display: true, text: 'Porcentaje de la Jornada Laboral' }
+                    },
+                    y: {
+                        stacked: true
+                    }
+                },
                 plugins: {
-                    legend: { position: 'bottom', labels: { usePointStyle: true, font: { size: 10 } } },
-                    tooltip: commonTooltipOptions,
-                    title: { display: true, text: 'Recuperación de Productividad' }
+                    legend: { position: 'bottom' },
+                    tooltip: commonTooltipOptions
                 }
             }
         });
