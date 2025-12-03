@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>El Impacto Económico de la Automatización con IA</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #F3F4F6;
+            color: #1F2937;
+        }
+
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 350px;
+            max-height: 400px;
+        }
+
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 400px;
+            }
+        }
+
+        .gradient-text {
+            background: linear-gradient(to right, #4F46E5, #06B6D4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        /* Timeline CSS - No SVG */
+        .timeline-line {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 4px;
+            height: 100%;
+            background-color: #E5E7EB;
+            z-index: 0;
+        }
+
+        .timeline-dot {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background-color: #4F46E5;
+            border: 4px solid #C7D2FE;
+            z-index: 10;
+        }
+    </style>
+    <!-- 
+    CHOSEN PALETTE: Vibrant Tech
+    Primary: #4F46E5 (Indigo)
+    Secondary: #06B6D4 (Cyan)
+    Accent: #F43F5E (Pink)
+    Background: #F3F4F6 (Light Gray)
+    
+    CONFIRMATION: NEITHER Mermaid JS NOR SVG were used anywhere in this output.
+    -->
+</head>
+
+<body class="bg-gray-50">
+
+    <!-- Hero Section -->
+    <header class="bg-white shadow-sm sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
+            <h1 class="text-2xl font-bold text-gray-900">Auto<span class="text-indigo-600">MIND</span> Analytics</h1>
+            <a href="#contact"
+                class="bg-indigo-600 text-white px-4 py-2 rounded-lg hover:bg-indigo-700 transition">Solicitar
+                Auditoría</a>
+        </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+
+        <!-- Intro -->
+        <div class="text-center mb-16">
+            <h2 class="text-4xl md:text-5xl font-extrabold mb-4">El ROI de la <span class="gradient-text">Automatización
+                    Inteligente</span></h2>
+            <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                En la economía digital actual, la inacción es el mayor coste. Descubra cómo los automatismos basados en
+                IA transforman centros de costes en motores de rentabilidad.
+            </p>
+        </div>
+
+        <!-- KPIs Section: Inform -->
+        <section class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+            <div
+                class="glass-card p-8 rounded-2xl shadow-lg border-l-4 border-indigo-500 transform hover:-translate-y-1 transition duration-300">
+                <div class="text-gray-500 font-semibold uppercase text-sm tracking-wider mb-2">ROI Promedio (Año 1)
+                </div>
+                <div class="text-5xl font-bold text-indigo-600">280%</div>
+                <p class="mt-4 text-gray-600 text-sm">Las empresas recuperan su inversión inicial en menos de 6 meses
+                    gracias a la eficiencia operativa.</p>
+            </div>
+            <div
+                class="glass-card p-8 rounded-2xl shadow-lg border-l-4 border-cyan-500 transform hover:-translate-y-1 transition duration-300">
+                <div class="text-gray-500 font-semibold uppercase text-sm tracking-wider mb-2">Reducción de Costes</div>
+                <div class="text-5xl font-bold text-cyan-600">-45%</div>
+                <p class="mt-4 text-gray-600 text-sm">Disminución directa en gastos operativos (OpEx) relacionados con
+                    tareas repetitivas y administrativas.</p>
+            </div>
+            <div
+                class="glass-card p-8 rounded-2xl shadow-lg border-l-4 border-pink-500 transform hover:-translate-y-1 transition duration-300">
+                <div class="text-gray-500 font-semibold uppercase text-sm tracking-wider mb-2">Precisión de Datos</div>
+                <div class="text-5xl font-bold text-pink-500">99.9%</div>
+                <p class="mt-4 text-gray-600 text-sm">Eliminación virtual del error humano en procesamiento de facturas,
+                    leads y gestión de inventario.</p>
+            </div>
+        </section>
+
+        <!-- Section: Comparative Cost Analysis -->
+        <section class="mb-20">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                <div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-4">Comparativa de Costes: Manual vs. IA</h3>
+                    <p class="text-gray-600 mb-6 leading-relaxed">
+                        El coste de mantener procesos manuales crece linealmente con la escala de la empresa. La
+                        automatización rompe esta dependencia. Este gráfico compara el coste acumulado de operar un
+                        departamento de Atención al Cliente y Data Entry de 10 personas versus una solución automatizada
+                        durante 5 años.
+                    </p>
+                    <ul class="space-y-3 mb-6">
+                        <li class="flex items-start">
+                            <span class="text-green-500 mr-2">✔</span>
+                            <span class="text-gray-700">Coste marginal cercano a cero por transacción adicional.</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-green-500 mr-2">✔</span>
+                            <span class="text-gray-700">Eliminación de costes por rotación y formación de
+                                personal.</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-green-500 mr-2">✔</span>
+                            <span class="text-gray-700">Disponibilidad 24/7 sin pago de horas extra.</span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-md">
+                    <div class="chart-container">
+                        <canvas id="costComparisonChart"></canvas>
+                    </div>
+                    <p class="text-center text-xs text-gray-400 mt-2">Datos basados en salarios medios del sector
+                        tecnológico vs. licencias SaaS promedio.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section: Productivity & Efficiency Radar -->
+        <section class="mb-20 bg-indigo-900 rounded-3xl p-8 md:p-12 text-white overflow-hidden relative">
+            <div
+                class="absolute top-0 right-0 -mt-10 -mr-10 w-64 h-64 bg-pink-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20">
+            </div>
+            <div
+                class="absolute bottom-0 left-0 -mb-10 -ml-10 w-64 h-64 bg-cyan-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20">
+            </div>
+
+            <div class="relative z-10 grid grid-cols-1 md:grid-cols-2 gap-12">
+                <div class="order-2 md:order-1">
+                    <div class="chart-container">
+                        <canvas id="radarBenefitsChart"></canvas>
+                    </div>
+                </div>
+                <div class="order-1 md:order-2 flex flex-col justify-center">
+                    <h3 class="text-2xl font-bold mb-4">Impacto Multidimensional</h3>
+                    <p class="text-indigo-100 mb-6">
+                        El retorno de inversión no es solo financiero. La automatización mejora métricas cualitativas
+                        críticas que definen la salud de una empresa a largo plazo.
+                    </p>
+                    <div class="space-y-4">
+                        <div class="flex items-center">
+                            <div
+                                class="w-10 h-10 rounded-full bg-cyan-500 flex items-center justify-center font-bold text-white mr-4">
+                                1</div>
+                            <div>
+                                <h4 class="font-bold">Escalabilidad</h4>
+                                <p class="text-xs text-indigo-200">Capacidad de absorber picos de demanda sin contratar.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="flex items-center">
+                            <div
+                                class="w-10 h-10 rounded-full bg-pink-500 flex items-center justify-center font-bold text-white mr-4">
+                                2</div>
+                            <div>
+                                <h4 class="font-bold">Satisfacción del Cliente</h4>
+                                <p class="text-xs text-indigo-200">Respuestas instantáneas y resolución al primer
+                                    contacto.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section: Time Allocation (Stacked Bar) -->
+        <section class="mb-20">
+            <div class="text-center mb-10">
+                <h3 class="text-2xl font-bold text-gray-900">Redistribución del Talento Humano</h3>
+                <p class="text-gray-600 max-w-2xl mx-auto mt-2">
+                    La automatización no reemplaza a las personas, las eleva. Observe cómo cambia la distribución del
+                    tiempo de sus empleados antes y después de implementar IA.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <!-- Data Explanation -->
+                <div class="lg:col-span-1 space-y-4">
+                    <div class="bg-white p-4 rounded-lg shadow border-l-4 border-gray-400">
+                        <h4 class="font-bold text-gray-800">Tareas Repetitivas</h4>
+                        <p class="text-sm text-gray-500">Data entry, clasificación de emails, generación de reportes
+                            estándar.</p>
+                    </div>
+                    <div class="bg-white p-4 rounded-lg shadow border-l-4 border-indigo-500">
+                        <h4 class="font-bold text-gray-800">Análisis y Estrategia</h4>
+                        <p class="text-sm text-gray-500">Interpretación de datos, toma de decisiones, planificación.</p>
+                    </div>
+                    <div class="bg-white p-4 rounded-lg shadow border-l-4 border-pink-500">
+                        <h4 class="font-bold text-gray-800">Innovación y Creatividad</h4>
+                        <p class="text-sm text-gray-500">Desarrollo de nuevos productos, mejora de experiencia de
+                            cliente.</p>
+                    </div>
+                </div>
+
+                <!-- Chart -->
+                <div class="lg:col-span-2 bg-white p-6 rounded-xl shadow-md">
+                    <div class="chart-container">
+                        <canvas id="timeAllocationChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section: Evolution of Revenue (Line Chart) -->
+        <section class="mb-20">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                <div class="bg-white p-6 rounded-xl shadow-md order-2 md:order-1">
+                    <div class="chart-container">
+                        <canvas id="revenueTrendChart"></canvas>
+                    </div>
+                </div>
+                <div class="order-1 md:order-2">
+                    <h3 class="text-2xl font-bold text-gray-900 mb-4">Proyección de Ingresos a 3 Años</h3>
+                    <p class="text-gray-600 mb-6 leading-relaxed">
+                        Este gráfico de líneas muestra la diferencia proyectada en el margen neto. Mientras la empresa
+                        tradicional (línea gris) sufre el aumento de costes operativos, la empresa automatizada (línea
+                        índigo) desacopla sus ingresos de sus gastos, generando un margen exponencial.
+                    </p>
+                    <div class="bg-indigo-50 p-4 rounded-lg border border-indigo-100">
+                        <p class="text-indigo-800 font-medium text-sm">
+                            <span class="font-bold text-xl block mb-1">El "Efecto Compuesto"</span>
+                            La IA aprende y mejora. El sistema implementado hoy será un 20% más eficiente el próximo año
+                            sin inversión adicional, aumentando el margen automáticamente.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section: Implementation Process (HTML/CSS Diagram) -->
+        <section class="mb-20">
+            <div class="text-center mb-12">
+                <h3 class="text-2xl font-bold text-gray-900">Su Camino hacia la Automatización</h3>
+                <p class="text-gray-600">Un proceso estructurado para garantizar el éxito y minimizar riesgos.</p>
+            </div>
+
+            <div class="relative max-w-4xl mx-auto">
+                <!-- Vertical Line -->
+                <div class="timeline-line hidden md:block"></div>
+
+                <!-- Steps -->
+                <div class="space-y-8 md:space-y-12 relative">
+
+                    <!-- Step 1 -->
+                    <div class="flex flex-col md:flex-row items-center w-full">
+                        <div class="w-full md:w-5/12 text-center md:text-right pr-0 md:pr-8 mb-4 md:mb-0">
+                            <div class="bg-white p-6 rounded-xl shadow-md hover:shadow-xl transition duration-300">
+                                <h4 class="font-bold text-indigo-600 text-lg">1. Auditoría de Procesos</h4>
+                                <p class="text-gray-600 text-sm mt-2">Identificamos cuellos de botella y tareas de bajo
+                                    valor añadido con alto coste.</p>
+                            </div>
+                        </div>
+                        <div class="timeline-dot hidden md:block absolute left-1/2 transform -translate-x-1/2"></div>
+                        <div class="w-full md:w-5/12 pl-0 md:pl-8"></div>
+                    </div>
+
+                    <!-- Step 2 -->
+                    <div class="flex flex-col md:flex-row items-center w-full">
+                        <div class="w-full md:w-5/12 pr-0 md:pr-8"></div>
+                        <div class="timeline-dot hidden md:block absolute left-1/2 transform -translate-x-1/2"></div>
+                        <div class="w-full md:w-5/12 text-center md:text-left pl-0 md:pl-8 mb-4 md:mb-0">
+                            <div class="bg-white p-6 rounded-xl shadow-md hover:shadow-xl transition duration-300">
+                                <h4 class="font-bold text-cyan-600 text-lg">2. Desarrollo del Piloto</h4>
+                                <p class="text-gray-600 text-sm mt-2">Implementación de un "Producto Mínimo Viable" en 4
+                                    semanas para validar el ROI.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Step 3 -->
+                    <div class="flex flex-col md:flex-row items-center w-full">
+                        <div class="w-full md:w-5/12 text-center md:text-right pr-0 md:pr-8 mb-4 md:mb-0">
+                            <div class="bg-white p-6 rounded-xl shadow-md hover:shadow-xl transition duration-300">
+                                <h4 class="font-bold text-pink-500 text-lg">3. Integración y Escala</h4>
+                                <p class="text-gray-600 text-sm mt-2">Conexión total con ERP/CRM y despliegue a todos
+                                    los departamentos.</p>
+                            </div>
+                        </div>
+                        <div class="timeline-dot hidden md:block absolute left-1/2 transform -translate-x-1/2"></div>
+                        <div class="w-full md:w-5/12 pl-0 md:pl-8"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Footer -->
+        <footer id="contact" class="bg-gray-900 text-white py-16 rounded-t-3xl mt-12">
+            <div class="max-w-4xl mx-auto text-center px-4">
+                <h2 class="text-3xl font-bold mb-6">¿Listo para aumentar su rentabilidad?</h2>
+                <p class="text-gray-400 mb-8">
+                    La competencia ya está automatizando. Agende una consulta gratuita de 15 minutos y le mostraremos
+                    exactamente cuánto dinero está dejando sobre la mesa.
+                </p>
+                <button
+                    class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-4 px-8 rounded-full shadow-lg transform hover:scale-105 transition duration-300 text-lg">
+                    Calcular mi ROI Personalizado
+                </button>
+                <p class="mt-8 text-xs text-gray-500">© 2023 AutoMIND Analytics. Todos los datos son proyecciones
+                    basadas en medias del mercado.</p>
+            </div>
+        </footer>
+
+    </main>
+
+    <script>
+        // --- Utility Functions ---
+
+        // Label Wrapping Logic (Mandatory for >16 chars)
+        function wrapLabel(label) {
+            if (label.length <= 16) return label;
+            const words = label.split(' ');
+            const lines = [];
+            let currentLine = words[0];
+
+            for (let i = 1; i < words.length; i++) {
+                if ((currentLine + " " + words[i]).length <= 16) {
+                    currentLine += " " + words[i];
+                } else {
+                    lines.push(currentLine);
+                    currentLine = words[i];
+                }
+            }
+            lines.push(currentLine);
+            return lines;
+        }
+
+        // Process labels array
+        function processLabels(labels) {
+            return labels.map(label => wrapLabel(label));
+        }
+
+        // Tooltip Configuration (Mandatory)
+        const commonTooltipOptions = {
+            callbacks: {
+                title: function (tooltipItems) {
+                    const item = tooltipItems[0];
+                    let label = item.chart.data.labels[item.dataIndex];
+                    if (Array.isArray(label)) {
+                        return label.join(' ');
+                    } else {
+                        return label;
+                    }
+                }
+            }
+        };
+
+        // --- Chart Configurations ---
+
+        // 1. Cost Comparison Chart (Bar)
+        const ctxCost = document.getElementById('costComparisonChart').getContext('2d');
+        const costLabels = processLabels(['Año 1', 'Año 2', 'Año 3', 'Año 4', 'Año 5']);
+
+        new Chart(ctxCost, {
+            type: 'bar',
+            data: {
+                labels: costLabels,
+                datasets: [
+                    {
+                        label: 'Empresa Tradicional (Manual)',
+                        data: [100, 110, 125, 140, 160], // Increasing costs due to raises/hiring
+                        backgroundColor: '#9CA3AF', // Gray
+                        borderRadius: 4
+                    },
+                    {
+                        label: 'Empresa Automatizada (IA)',
+                        data: [120, 60, 62, 65, 68], // High initial setup, low maintenance
+                        backgroundColor: '#4F46E5', // Indigo
+                        borderRadius: 4
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { position: 'bottom' },
+                    tooltip: commonTooltipOptions,
+                    title: {
+                        display: true,
+                        text: 'Coste Operativo Acumulado (Miles de €)'
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        title: { display: true, text: 'Coste Anual (k€)' }
+                    }
+                }
+            }
+        });
+
+        // 2. Efficiency Radar Chart
+        const ctxRadar = document.getElementById('radarBenefitsChart').getContext('2d');
+        // Labels that might be long
+        const radarRawLabels = [
+            'Velocidad de Procesamiento',
+            'Reducción de Errores',
+            'Escalabilidad Operativa',
+            'Satisfacción Empleado',
+            'Ahorro de Costes'
+        ];
+
+        new Chart(ctxRadar, {
+            type: 'radar',
+            data: {
+                labels: processLabels(radarRawLabels),
+                datasets: [{
+                    label: 'Con Automatización IA',
+                    data: [95, 99, 100, 85, 90],
+                    fill: true,
+                    backgroundColor: 'rgba(6, 182, 212, 0.2)', // Cyan transparent
+                    borderColor: '#06B6D4',
+                    pointBackgroundColor: '#06B6D4',
+                    pointBorderColor: '#fff',
+                    pointHoverBackgroundColor: '#fff',
+                    pointHoverBorderColor: '#06B6D4'
+                }, {
+                    label: 'Procesos Manuales',
+                    data: [40, 60, 30, 50, 40],
+                    fill: true,
+                    backgroundColor: 'rgba(244, 63, 94, 0.2)', // Pink transparent
+                    borderColor: '#F43F5E',
+                    pointBackgroundColor: '#F43F5E',
+                    pointBorderColor: '#fff',
+                    pointHoverBackgroundColor: '#fff',
+                    pointHoverBorderColor: '#F43F5E'
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { labels: { color: 'white' } }, // White text for dark bg
+                    tooltip: commonTooltipOptions
+                },
+                scales: {
+                    r: {
+                        angleLines: { color: 'rgba(255, 255, 255, 0.2)' },
+                        grid: { color: 'rgba(255, 255, 255, 0.2)' },
+                        pointLabels: { color: 'white', font: { size: 12 } },
+                        ticks: { backdropColor: 'transparent', color: 'transparent' } // Hide numbers on axis
+                    }
+                }
+            }
+        });
+
+        // 3. Time Allocation (Stacked Bar)
+        const ctxTime = document.getElementById('timeAllocationChart').getContext('2d');
+
+        new Chart(ctxTime, {
+            type: 'bar',
+            data: {
+                labels: processLabels(['Antes de IA', 'Después de IA']),
+                datasets: [
+                    {
+                        label: 'Tareas Repetitivas',
+                        data: [70, 15],
+                        backgroundColor: '#9CA3AF', // Gray
+                    },
+                    {
+                        label: 'Análisis Estratégico',
+                        data: [20, 50],
+                        backgroundColor: '#4F46E5', // Indigo
+                    },
+                    {
+                        label: 'Innovación',
+                        data: [10, 35],
+                        backgroundColor: '#F43F5E', // Pink
+                    }
+                ]
+            },
+            options: {
+                indexAxis: 'y', // Horizontal bar
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    tooltip: commonTooltipOptions,
+                    legend: { position: 'bottom' }
+                },
+                scales: {
+                    x: { stacked: true, max: 100, title: { display: true, text: 'Porcentaje del Tiempo (%)' } },
+                    y: { stacked: true }
+                }
+            }
+        });
+
+        // 4. Revenue Trend (Line Chart)
+        const ctxRevenue = document.getElementById('revenueTrendChart').getContext('2d');
+        const months = ['Q1', 'Q2', 'Q3', 'Q4', 'Q5', 'Q6', 'Q7', 'Q8'];
+
+        new Chart(ctxRevenue, {
+            type: 'line',
+            data: {
+                labels: months,
+                datasets: [
+                    {
+                        label: 'Margen Neto (Con IA)',
+                        data: [10, 12, 18, 25, 35, 48, 60, 75],
+                        borderColor: '#4F46E5', // Indigo
+                        backgroundColor: 'rgba(79, 70, 229, 0.1)',
+                        fill: true,
+                        tension: 0.4
+                    },
+                    {
+                        label: 'Margen Neto (Tradicional)',
+                        data: [10, 11, 12, 12, 13, 13, 14, 14],
+                        borderColor: '#9CA3AF', // Gray
+                        borderDash: [5, 5],
+                        tension: 0.4,
+                        fill: false
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { position: 'top' },
+                    tooltip: commonTooltipOptions
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        title: { display: true, text: 'Margen de Beneficio (%)' }
+                    }
+                }
+            }
+        });
+
+    </script>
+</body>
+
+</html>
